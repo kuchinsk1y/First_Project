@@ -1,6 +1,7 @@
 import { TITLES, TYPES, CHECK_TIMES, FEATURES, PHOTOS } from './constants.js'
 import { getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray } from './util.js'
 
+
 export function createLocation() {
   return {
     x: getRandomFloat(35.65, 35.7),
@@ -40,6 +41,6 @@ export function createAdvertisement() {
   }
 }
 
-export function createAdvertisements(count = 10) {
+export function createAdvertisements(count) {
   return Array.from({ length: count }, createAdvertisement)
 }
