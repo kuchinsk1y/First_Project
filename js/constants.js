@@ -20,3 +20,25 @@ export const PHOTOS = [
   'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
   'http://o0.github.io/assets/images/tokyo/hotel3.jpg',
 ]
+
+export const TOKYO_CENTER = {
+  lat: 35.6895,
+  lng: 139.6917,
+}
+
+export const MAP_ZOOM = 12
+export const ADDRESS_PRECISION = 5
+export const SIMILAR_ADS_COUNT = 10
+
+export const MAIN_PIN_ICON = {
+  url: 'img/main-pin.svg',
+  size: [52, 52],
+  anchor: [26, 52],
+}
+
+export const AD_ICON = {
+  url: 'img/pin.svg',
+  size: [40, 40],
+  anchor: [20, 40],
+}
+
