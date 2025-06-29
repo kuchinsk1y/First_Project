@@ -32,12 +32,38 @@ const roomCapacityMap = {
 
 function updateCapacityOptions() {
   const allowed = roomCapacityMap[roomNumber.value]
-  Array.from(capacity.options).forEach((option) => {
-    option.disabled = !allowed.includes(option.value)
-  })
-  capacity.value = allowed.includes(capacity.value) ? capacity.value : allowed[0]
+  if (!allowed.includes(capacity.value)) capacity.value = allowed[0]
 }
 
-roomNumber.addEventListener('change', updateCapacityOptions)
+function validateRoomCapacity() {
+  const allowed = roomCapacityMap[roomNumber.value]
+  if (!allowed.includes(capacity.value)) capacity.setCustomValidity('Выбранное количество гостей не подходит для выбранного количества комнат.')
+  else capacity.setCustomValidity('')
+}
+
+const titleField = document.querySelector('#title')
+titleField.required = true
+titleField.minLength = 30
+titleField.maxLength = 100
+priceField.required = true
+priceField.max = 1000000
+
+roomNumber.addEventListener('change', () => {
+  updateCapacityOptions()
+  validateRoomCapacity()
+})
+
+capacity.addEventListener('change', validateRoomCapacity)
 
 updateCapacityOptions()
+validateRoomCapacity()
+
+const form = document.querySelector('.ad-form')
+
+form.method = 'post'
+form.action = 'https://echo.htmlacademy.ru/'
+
+form.addEventListener('submit', (evt) => {
+  validateRoomCapacity()
+  if (!form.checkValidity()) evt.preventDefault()
+})
